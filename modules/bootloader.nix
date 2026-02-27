@@ -33,6 +33,6 @@
     ];
     loader.timeout = 5;
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxKernel.packagesFor pkgs.cachyosKernels.linux-cachyos-latest;
   };
 }

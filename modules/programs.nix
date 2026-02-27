@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   config,
   inputs,
   ...
@@ -16,6 +15,7 @@
     killall
     kitty
     git
+    ripgrep
     cargo
     unzip
     wl-clipboard
@@ -24,7 +24,11 @@
     brave
   ];
 
-  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  fonts.packages = with pkgs.nerd-fonts; [
+    fira-code
+    jetbrains-mono
+    ubuntu
+  ];
 
   programs.fish.enable = true;
   programs.chromium.enable = true;
