@@ -7,21 +7,36 @@
 
 {
   environment.systemPackages = with pkgs; [
-    neovim
-    homebank
+    # Browsers
+    brave
     tutanota-desktop
-    wget
+    inputs.zen-browser.packages."${pkgs.system}".default
+
+    # Texting
+    vesktop
+    signal-desktop-bin
+
+    # Music
     spotify
-    killall
+
+    # Cli
     kitty
+    neovim
+    wget
     git
     ripgrep
-    cargo
+    killall
     unzip
     wl-clipboard
+
+    # Gui stuff
+    homebank
     openrgb
-    inputs.zen-browser.packages."${pkgs.system}".default
-    brave
+
+    # System stuff
+    waypaper
+    swww
+
   ];
 
   fonts.packages = with pkgs.nerd-fonts; [

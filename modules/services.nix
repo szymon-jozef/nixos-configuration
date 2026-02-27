@@ -9,6 +9,7 @@
     syncthing = {
       enable = true;
       openDefaultPorts = true;
+      systemService = false;
       user = "szymon";
     };
   };
