@@ -9,7 +9,10 @@
 {
   environment.systemPackages = with pkgs; [
     neovim
+    homebank
+    tutanota-desktop
     wget
+    spotify
     killall
     kitty
     git
