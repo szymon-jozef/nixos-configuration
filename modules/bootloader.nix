@@ -1,19 +1,17 @@
-{ pkgs, hostName, ... }:
+{ pkgs, hostConfig, ... }:
 
 {
   boot = {
     initrd.systemd.enable = true;
 
     loader.limine =
-      if hostName == "pilecki" then
+      if hostConfig.bootType == "mbr" then
         {
-          # mbr
           enable = true;
           efiSupport = false;
           biosSupport = true;
           biosDevice = "/dev/sda";
         }
-      # gpt
       else
         {
           enable = true;

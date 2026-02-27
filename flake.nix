@@ -11,16 +11,20 @@
   };
 
   outputs =
-    { nixpkgs, catppuccin, ... }@inputs:
+    {
+      nixpkgs,
+      catppuccin,
+      ...
+    }@inputs:
     let
       mkHost =
-        hostName: hostHardware:
+        hostConfig:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs hostName;
+            inherit inputs hostConfig;
           };
           modules = [
-            hostHardware
+            hostConfig.hardware
             ./configuration.nix
             catppuccin.nixosModules.catppuccin
             (
@@ -34,8 +38,19 @@
     in
     {
       nixosConfigurations = {
-        pilecki = mkHost "pilecki" ./hardware/pilecki.nix;
-        pitagoras = mkHost "pitagoras" ./hardware/pitagoras.nix;
+        pilecki = mkHost {
+          name = "pilecki";
+          hardware = ./hardware/pilecki.nix;
+          isNvidia = false;
+          bootType = "mbr";
+        };
+
+        pitagoras = mkHost {
+          name = "pitagoras";
+          hardware = ./hardware/pitagoras.nix;
+          isNvidia = true;
+          bootType = "gpt";
+        };
       };
     };
 }

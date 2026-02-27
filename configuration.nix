@@ -1,5 +1,7 @@
 {
-  hostName,
+  hostConfig,
+  lib,
+  config,
   ...
 }:
 
@@ -53,7 +55,18 @@
     bluetooth.enable = true;
   };
 
-  networking.hostName = hostName;
+  services.xserver.videoDrivers = if hostConfig.isNvidia then [ "nvidia" ] else [ ];
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  hardware.nvidia = lib.mkIf hostConfig.isNvidia {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  networking.hostName = hostConfig.name;
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
