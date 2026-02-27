@@ -1,20 +1,18 @@
 {
-  config,
-  inputs,
-  pkgs,
-  lib,
+  hostName,
   ...
 }:
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware/pilecki.nix
     ./modules/audio.nix
     ./modules/bootloader.nix
     ./modules/locale.nix
     ./modules/programs.nix
     ./modules/services.nix
     ./modules/users.nix
+    ./modules/de.nix
   ];
 
   nix.settings = {
@@ -36,7 +34,7 @@
     bluetooth.enable = true;
   };
 
-  networking.hostName = "pilecki";
+  networking.hostName = hostName;
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

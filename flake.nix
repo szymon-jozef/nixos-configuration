@@ -15,7 +15,23 @@
     { nixpkgs, catppuccin, ... }@inputs:
     {
       nixosConfigurations.pilecki = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          hostName = "pilecki";
+          hostHardware = ./hardware/pilecki.nix;
+        };
+        modules = [
+          ./configuration.nix
+          catppuccin.nixosModules.catppuccin
+        ];
+      };
+
+      nixosConfigurations.pitagoras = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          hostName = "pitagoras";
+          hostHardware = ./hardware/pitagoras.nix;
+        };
         modules = [
           ./configuration.nix
           catppuccin.nixosModules.catppuccin

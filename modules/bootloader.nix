@@ -1,14 +1,25 @@
-{ pkgs, ... }:
+{ pkgs, hostName, ... }:
 
 {
   boot = {
     initrd.systemd.enable = true;
-    loader.limine = {
-      enable = true;
-      efiSupport = false;
-      biosSupport = true;
-      biosDevice = "/dev/sda";
-    };
+
+    loader.limine =
+      if hostName == "pilecki" then
+        {
+          # mbr
+          enable = true;
+          efiSupport = false;
+          biosSupport = true;
+          biosDevice = "/dev/sda";
+        }
+      # gpt
+      else
+        {
+          enable = true;
+          efiSupport = true;
+          biosSupport = false;
+        };
 
     plymouth.enable = true;
 
@@ -22,7 +33,6 @@
     ];
     loader.timeout = 5;
 
-    # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
   };
 }
