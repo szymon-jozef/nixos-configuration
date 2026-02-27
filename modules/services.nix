@@ -6,6 +6,10 @@
     printing.enable = true;
     gnome.gnome-keyring.enable = true;
     tailscale.enable = true;
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+    };
   };
 
   security.pam.services.login.enableGnomeKeyring = true;
