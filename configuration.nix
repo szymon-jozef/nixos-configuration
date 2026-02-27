@@ -1,11 +1,12 @@
 {
   hostName,
+  hostHardware,
   ...
 }:
 
 {
   imports = [
-    ./hardware/pilecki.nix
+    hostHardware
     ./modules/audio.nix
     ./modules/bootloader.nix
     ./modules/locale.nix
