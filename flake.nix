@@ -59,7 +59,7 @@
         paderewski = mkHost {
           name = "paderewski";
           hardware = ./hardware/paderewski.nix;
-          isNvidia = true;
+          isNvidia = false;
           bootType = "gpt";
           gaming = true;
           winboat = true;
