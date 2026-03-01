@@ -64,7 +64,8 @@
       extraOptions = [
         "--network=host"
         "--privileged"
-        "--device=/dev:/dev"
+        "-v"
+        "/dev:/dev"
         "-v"
         "/run/udev:/run/udev:ro"
       ];
