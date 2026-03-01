@@ -17,8 +17,20 @@
       ...
     }@inputs:
     let
+      defaultHostConfig = {
+        username = "szymon";
+        isNvidia = false;
+        bootType = "gpt";
+        gaming = true;
+        winboat = true;
+        snapperHome = true;
+      };
+
       mkHost =
-        hostConfig:
+        customConfig:
+        let
+          hostConfig = defaultHostConfig // customConfig;
+        in
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs hostConfig;
@@ -38,10 +50,10 @@
     in
     {
       nixosConfigurations = {
+
         pilecki = mkHost {
           name = "pilecki";
           hardware = ./hardware/pilecki.nix;
-          isNvidia = false;
           bootType = "mbr";
           gaming = false;
           winboat = false;
@@ -51,18 +63,12 @@
           name = "pitagoras";
           hardware = ./hardware/pitagoras.nix;
           isNvidia = true;
-          bootType = "gpt";
-          gaming = true;
-          winboat = true;
+          snapperHome = false;
         };
 
         paderewski = mkHost {
           name = "paderewski";
           hardware = ./hardware/paderewski.nix;
-          isNvidia = false;
-          bootType = "gpt";
-          gaming = true;
-          winboat = true;
         };
       };
     };

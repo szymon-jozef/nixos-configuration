@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  hostConfig,
+  ...
+}:
 
 {
   services.xserver.enable = false;
@@ -11,7 +16,7 @@
       settings = {
         Autologin = {
           Session = "hyprland-uwsm.desktop";
-          User = "szymon";
+          User = hostConfig.username;
         };
       };
     };

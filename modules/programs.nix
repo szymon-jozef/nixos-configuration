@@ -72,6 +72,8 @@
       enable = true;
       gamescopeSession.enable = true;
     };
+
+    gnupg.agent.enable = true;
   };
 
   # Writes current system packages to /etc/current-system-packages

@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, hostConfig, ... }:
 
 {
-  users.users.szymon = {
+  users.users.${hostConfig.username} = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [

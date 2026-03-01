@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  hostConfig,
+  lib,
+  ...
+}:
 
 {
   services = {
@@ -9,13 +14,24 @@
       enable = true;
       openDefaultPorts = true;
       systemService = false;
-      user = "szymon";
+      user = hostConfig.username;
+    };
+
+    gnome.gnome-keyring.enable = false;
+    dbus.packages = [ pkgs.kdePackages.kwallet ];
+
+    snapper = lib.mkIf hostConfig.snapperHome {
+      configs = {
+        home = {
+          SUBVOLUMES = "/home";
+          ALLOW_USERS = [ hostConfig.username ];
+          TIMELINE_CREATE = true;
+          TIMELINE_CLEANUP = true;
+        };
+      };
     };
   };
 
-  services.gnome.gnome-keyring.enable = false;
-  services.dbus.packages = [ pkgs.kdePackages.kwallet ];
-  security.pam.services.login.kwallet.enable = true;
-  programs.gnupg.agent.enable = true;
   security.pam.services.sddm.kwallet.enable = true;
+  security.pam.services.login.kwallet.enable = true;
 }
