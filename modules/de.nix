@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   pkgs,
   hostConfig,
@@ -14,7 +15,7 @@
       wayland.enable = true;
       autoNumlock = true;
       settings = {
-        Autologin = {
+        Autologin = lib.mkIf hostConfig.autologin {
           Session = "hyprland-uwsm.desktop";
           User = hostConfig.username;
         };

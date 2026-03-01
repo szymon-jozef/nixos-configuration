@@ -24,6 +24,7 @@
         gaming = true;
         winboat = true;
         snapperHome = true;
+        autologin = true;
         overclock = {
           enable = false;
         };
@@ -72,6 +73,7 @@
         paderewski = mkHost {
           name = "paderewski";
           hardware = ./hardware/paderewski.nix;
+          autologin = false;
           overclock = {
             enable = true;
             settings = {
