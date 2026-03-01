@@ -45,6 +45,8 @@
       };
     };
 
+    flatpak.enable = true;
+
     hardware.openrgb.enable = true;
     lact = hostConfig.overclock;
 

@@ -36,6 +36,7 @@
       # Gui stuff
       homebank
       openrgb
+      btrfs-assistant
 
       # System stuff
       waypaper
@@ -51,7 +52,12 @@
       winboat
     ]
     ++ lib.optionals hostConfig.gaming [
+      mangohud
       prismlauncher
+      heroic
+      lutris
+      rpcs3
+      pcsx2
     ];
 
   virtualisation.docker.enable = true;
