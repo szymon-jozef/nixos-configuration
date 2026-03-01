@@ -23,7 +23,7 @@
     snapper = lib.mkIf hostConfig.snapperHome {
       configs = {
         home = {
-          SUBVOLUMES = "/home";
+          SUBVOLUME = "/home";
           ALLOW_USERS = [ hostConfig.username ];
           TIMELINE_CREATE = true;
           TIMELINE_CLEANUP = true;

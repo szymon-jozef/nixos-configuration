@@ -56,10 +56,31 @@
 
   virtualisation.docker.enable = true;
 
+  virtualisation.oci-containers.containers = {
+    openlinkhub = lib.mkIf (hostConfig.name == "paderewski") {
+      image = "ghcr.io/jurkovic-nikola/openlinkhub:latest";
+      autoStart = true;
+
+      extraOptions = [
+        "--network=host"
+        "--privileged"
+        "--device=/dev:/dev"
+        "-v"
+        "/run/udev:/run/udev:ro"
+      ];
+
+      volumes = [
+        "/var/lib/openlinkhub-docker:/opt/OpenLinkHub/database"
+      ];
+    };
+  };
+
   fonts.packages = with pkgs.nerd-fonts; [
     fira-code
+    noto
     jetbrains-mono
     ubuntu
+    symbols-only
   ];
 
   programs = {
@@ -86,6 +107,8 @@
   };
 
   catppuccin.enable = true;
+
+  services.udev.packages = [ pkgs.openlinkhub ];
 
   # Writes current system packages to /etc/current-system-packages
   environment.etc."current-system-packages".text =
