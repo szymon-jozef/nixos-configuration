@@ -34,4 +34,9 @@
 
   security.pam.services.sddm.kwallet.enable = true;
   security.pam.services.login.kwallet.enable = true;
+
+  hardware.openrgb.enable = true;
+
+  lact = hostConfig.overclock;
+  xserver.videoDrivers = if hostConfig.isNvidia then [ "nvidia" ] else [ ];
 }

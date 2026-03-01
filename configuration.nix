@@ -53,9 +53,9 @@
   hardware = {
     graphics.enable = true;
     bluetooth.enable = true;
+    amdgpu.overdrive.enable = lib.mkIf (!hostConfig.isNvidia && hostConfig.overclock.enable) true;
   };
 
-  services.xserver.videoDrivers = if hostConfig.isNvidia then [ "nvidia" ] else [ ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   hardware.nvidia = lib.mkIf hostConfig.isNvidia {
     modesetting.enable = true;
