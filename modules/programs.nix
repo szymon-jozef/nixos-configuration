@@ -49,12 +49,12 @@
     ]
     ++ lib.optionals hostConfig.winboat [
       winboat
+    ]
+    ++ lib.optionals hostConfig.gaming [
+      prismlauncher
     ];
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
+  virtualisation.docker.enable = true;
 
   fonts.packages = with pkgs.nerd-fonts; [
     fira-code

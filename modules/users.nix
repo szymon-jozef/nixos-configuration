@@ -7,6 +7,11 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
+  };
+
+  users.groups = {
+    docker = { };
   };
 }
