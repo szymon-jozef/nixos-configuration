@@ -20,6 +20,7 @@
       defaultHostConfig = {
         username = "szymon";
         isNvidia = false;
+        cpu = "intel";
         bootType = "gpt";
         gaming = true;
         winboat = true;
@@ -74,6 +75,7 @@
           name = "paderewski";
           hardware = ./hardware/paderewski.nix;
           autologin = false;
+          cpu = "amd";
           overclock = {
             enable = true;
             settings = {

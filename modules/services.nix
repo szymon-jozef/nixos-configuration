@@ -32,11 +32,33 @@
     };
   };
 
-  security.pam.services.sddm.kwallet.enable = true;
-  security.pam.services.login.kwallet.enable = true;
-
   hardware.openrgb.enable = true;
-
   lact = hostConfig.overclock;
   xserver.videoDrivers = if hostConfig.isNvidia then [ "nvidia" ] else [ ];
+
+  xserver.enable = false;
+
+  displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      autoNumlock = true;
+      settings = {
+        Autologin = lib.mkIf hostConfig.autologin {
+          Session = "hyprland-uwsm.desktop";
+          User = hostConfig.username;
+        };
+      };
+    };
+  };
+
+  # Audio
+
+  pulseaudio.enable = false;
+  pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 }

@@ -74,7 +74,18 @@
     };
 
     gnupg.agent.enable = true;
+
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      withUWSM = true;
+      xwayland.enable = true;
+    };
   };
+
+  catppuccin.enable = true;
 
   # Writes current system packages to /etc/current-system-packages
   environment.etc."current-system-packages".text =
