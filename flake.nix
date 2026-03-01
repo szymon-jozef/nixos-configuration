@@ -43,6 +43,8 @@
           hardware = ./hardware/pilecki.nix;
           isNvidia = false;
           bootType = "mbr";
+          gaming = false;
+          winboat = false;
         };
 
         pitagoras = mkHost {
@@ -50,6 +52,17 @@
           hardware = ./hardware/pitagoras.nix;
           isNvidia = true;
           bootType = "gpt";
+          gaming = true;
+          winboat = true;
+        };
+
+        paderewski = mkHost {
+          name = "paderewski";
+          hardware = ./hardware/paderewski.nix;
+          isNvidia = true;
+          bootType = "gpt";
+          gaming = true;
+          winboat = true;
         };
       };
     };

@@ -2,42 +2,59 @@
   pkgs,
   config,
   inputs,
+  hostConfig,
+  lib,
   ...
 }:
 
 {
-  environment.systemPackages = with pkgs; [
-    # Browsers
-    brave
-    tutanota-desktop
-    inputs.zen-browser.packages."${pkgs.system}".default
+  environment.systemPackages =
+    with pkgs;
+    [
+      # Browsers
+      brave
+      tutanota-desktop
+      inputs.zen-browser.packages."${pkgs.system}".default
 
-    # Texting
-    vesktop
-    signal-desktop-bin
+      # Texting
+      vesktop
+      signal-desktop-bin
 
-    # Music
-    spotify
+      # Music
+      spotify
 
-    # Cli
-    kitty
-    neovim
-    wget
-    git
-    ripgrep
-    killall
-    unzip
-    wl-clipboard
+      # Cli
+      kitty
+      neovim
+      wget
+      git
+      ripgrep
+      killall
+      unzip
+      wl-clipboard
 
-    # Gui stuff
-    homebank
-    openrgb
+      # Gui stuff
+      homebank
+      openrgb
 
-    # System stuff
-    waypaper
-    swww
+      # System stuff
+      waypaper
+      swww
+      kdePackages.kwallet
+      kdePackages.kwallet-pam
+      kdePackages.kwalletmanager
 
-  ];
+      # virtualisation
+      distrobox
+    ]
+    ++ lib.optionals hostConfig.winboat [
+      winboat
+    ];
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
 
   fonts.packages = with pkgs.nerd-fonts; [
     fira-code
@@ -45,8 +62,17 @@
     ubuntu
   ];
 
-  programs.fish.enable = true;
-  programs.chromium.enable = true;
+  programs = {
+    fish.enable = true;
+    chromium.enable = true;
+
+    java.enable = true;
+    gamemode.enable = lib.mkIf hostConfig.gaming true;
+    steam = lib.mkIf hostConfig.gaming {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+  };
 
   # Writes current system packages to /etc/current-system-packages
   environment.etc."current-system-packages".text =
