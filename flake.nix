@@ -72,7 +72,7 @@
         };
 
         paderewski = mkHost {
-          name = "paderewski";
+          name = "paderewski-nix";
           hardware = ./hardware/paderewski.nix;
           autologin = false;
           snapper_home = false;

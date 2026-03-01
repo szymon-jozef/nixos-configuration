@@ -32,6 +32,7 @@
       killall
       unzip
       wl-clipboard
+      ffmpeg
 
       # Gui stuff
       homebank
@@ -64,7 +65,7 @@
   virtualisation.docker.enable = true;
 
   virtualisation.oci-containers.containers = {
-    openlinkhub = lib.mkIf (hostConfig.name == "paderewski") {
+    openlinkhub = lib.mkIf (hostConfig.name == "paderewski-nix") {
       image = "ghcr.io/jurkovic-nikola/openlinkhub:latest";
       autoStart = true;
 
