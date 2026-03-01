@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./modules/audio.nix
     ./modules/bootloader.nix
     ./modules/locale.nix
     ./modules/programs.nix
