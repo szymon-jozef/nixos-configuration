@@ -38,6 +38,7 @@
       homebank
       openrgb
       btrfs-assistant
+      rstudio
 
       # System stuff
       waypaper
@@ -46,9 +47,11 @@
       kdePackages.kwallet-pam
       kdePackages.kwalletmanager
       hyprpolkitagent
+      modprobed-db
 
       # virtualisation
       distrobox
+      quickemu
     ]
     ++ lib.optionals hostConfig.winboat [
       winboat
@@ -60,6 +63,7 @@
       lutris
       rpcs3
       pcsx2
+      alvr
     ];
 
   virtualisation.docker.enable = true;
