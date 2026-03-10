@@ -18,7 +18,7 @@
 
       # Texting
       vesktop
-      signal-desktop-bin
+      signal-desktop
 
       # Music
       spotify
