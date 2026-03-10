@@ -72,10 +72,10 @@
         };
 
         paderewski = mkHost {
-          name = "paderewski-nix";
+          name = "paderewski";
           hardware = ./hardware/paderewski.nix;
-          autologin = false;
-          snapper_home = false;
+          autologin = true;
+          snapper_home = true;
           cpu = "amd";
         };
       };

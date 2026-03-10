@@ -69,7 +69,7 @@
   virtualisation.docker.enable = true;
 
   virtualisation.oci-containers.containers = {
-    openlinkhub = lib.mkIf (hostConfig.name == "paderewski-nix") {
+    openlinkhub = lib.mkIf (hostConfig.name == "paderewski") {
       image = "ghcr.io/jurkovic-nikola/openlinkhub:latest";
       autoStart = true;
 
@@ -124,7 +124,6 @@
   catppuccin.enable = true;
 
   services.udev.packages = [ pkgs.openlinkhub ];
-
 
   # Writes current system packages to /etc/current-system-packages
   environment.etc."current-system-packages".text =

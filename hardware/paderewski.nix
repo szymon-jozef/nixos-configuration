@@ -14,27 +14,30 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/115f6032-c253-4f21-bf16-aba5db796cdf";
+    { device = "/dev/mapper/cryptroot";
       fsType = "btrfs";
-      options = [ "subvol=@nixos" ];
+      options = [ "subvol=@" ];
     };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/115f6032-c253-4f21-bf16-aba5db796cdf";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" ];
-    };
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/1e6e9e2c-e035-4d31-837e-b39087843b03";
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/115f6032-c253-4f21-bf16-aba5db796cdf";
+    { device = "/dev/mapper/cryptroot";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/home/szymon/.local/share/Steam/steamapps" =
-    { device = "/dev/disk/by-uuid/115f6032-c253-4f21-bf16-aba5db796cdf";
+    { device = "/dev/mapper/cryptroot";
       fsType = "btrfs";
       options = [ "subvol=@steam" ];
+    };
+
+
+  fileSystems."/nix" =
+    { device = "/dev/mapper/cryptroot";
+      fsType = "btrfs";
+      options = [ "subvol=@nix" ];
     };
 
   fileSystems."/boot" =
@@ -43,14 +46,8 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/mnt/uwu_games" =
-    { device = "/dev/disk/by-uuid/e92975bd-e6f1-4528-b045-ebe5157309ab";
-      fsType = "btrfs";
-      options = [ "subvol=@games" ];
-    };
-
-  fileSystems."/mnt/uwu_backup" =
-    { device = "/dev/disk/by-uuid/e92975bd-e6f1-4528-b045-ebe5157309ab";
+  fileSystems."/mnt/wd_backup" =
+    { device = "/dev/disk/by-uuid/40e17484-882a-412d-b6e5-741f3de2c2cb";
       fsType = "btrfs";
       options = [ "subvol=@backup" ];
     };
@@ -61,8 +58,14 @@
       options = [ "subvol=@games" ];
     };
 
-  fileSystems."/mnt/wd_backup" =
-    { device = "/dev/disk/by-uuid/40e17484-882a-412d-b6e5-741f3de2c2cb";
+  fileSystems."/mnt/uwu_games" =
+    { device = "/dev/disk/by-uuid/e92975bd-e6f1-4528-b045-ebe5157309ab";
+      fsType = "btrfs";
+      options = [ "subvol=@games" ];
+    };
+
+  fileSystems."/mnt/uwu_backup" =
+    { device = "/dev/disk/by-uuid/e92975bd-e6f1-4528-b045-ebe5157309ab";
       fsType = "btrfs";
       options = [ "subvol=@backup" ];
     };
