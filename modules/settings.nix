@@ -1,4 +1,4 @@
-{ ... }:
+{ hostConfig, ... }:
 
 {
   nix.settings = {
@@ -29,7 +29,9 @@
       "nix-command"
       "flakes"
     ];
-  };
+    max-jobs = if hostConfig.name == "pitagoras" then 1 else "auto";
+    cores = if hostConfig.name == "pitagoras" then 1 else 0;
 
+  };
   nixpkgs.config.allowUnfree = true;
 }
