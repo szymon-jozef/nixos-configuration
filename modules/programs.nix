@@ -69,23 +69,23 @@
   virtualisation.docker.enable = true;
   virtualisation.oci-containers.backend = "docker";
 
-  virtualisation.oci-containers.containers = lib.optionalAttrs (hostConfig.name == "paderewski") {
-    openlinkhub = {
-      image = "ghcr.io/jurkovic-nikola/openlinkhub:latest";
-      autoStart = true;
+  #virtualisation.oci-containers.containers = lib.optionalAttrs (hostConfig.name == "paderewski") {
+  #  openlinkhub = {
+  #    image = "ghcr.io/jurkovic-nikola/openlinkhub:latest";
+  #    autoStart = true;
 
-      extraOptions = [
-        "--network=host"
-        "--privileged"
-      ];
+  #    extraOptions = [
+  #      "--network=host"
+  #      "--privileged"
+  #    ];
 
-      volumes = [
-        "/var/lib/openlinkhub-docker:/opt/OpenLinkHub/database"
-        "/dev:/dev"
-        "/run/udev:/run/udev:ro"
-      ];
-    };
-  };
+  #    volumes = [
+  #      "/var/lib/openlinkhub-docker:/opt/OpenLinkHub/database"
+  #      "/dev:/dev"
+  #      "/run/udev:/run/udev:ro"
+  #    ];
+  #  };
+  #};
 
   fonts.packages = with pkgs.nerd-fonts; [
     fira-code
