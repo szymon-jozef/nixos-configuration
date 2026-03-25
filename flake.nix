@@ -80,7 +80,7 @@
           name = "paderewski";
           hardware = ./hardware/paderewski.nix;
           autologin = true;
-          snapper_home = true;
+          snapperHome = true;
           cpu = "amd";
         };
       };
