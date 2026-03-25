@@ -45,6 +45,12 @@
       };
     };
 
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
     flatpak.enable = true;
 
     hardware.openrgb.enable = true;
