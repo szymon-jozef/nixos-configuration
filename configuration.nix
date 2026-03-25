@@ -13,12 +13,6 @@
     ./modules/security.nix
   ];
 
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   system.stateVersion = "25.11"; # Don't you fecking change me!!!
