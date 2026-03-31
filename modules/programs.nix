@@ -8,6 +8,7 @@
 }:
 
 {
+  nixpkgs.config.permittedInsecurePackages = [ "electron-38.8.4" ];
   environment.systemPackages =
     with pkgs;
     [
@@ -54,7 +55,7 @@
       quickemu
     ]
     ++ lib.optionals hostConfig.winboat [
-      winboat
+      # winboat
     ]
     ++ lib.optionals hostConfig.gaming [
       mangohud
@@ -68,24 +69,6 @@
 
   virtualisation.docker.enable = true;
   virtualisation.oci-containers.backend = "docker";
-
-  #virtualisation.oci-containers.containers = lib.optionalAttrs (hostConfig.name == "paderewski") {
-  #  openlinkhub = {
-  #    image = "ghcr.io/jurkovic-nikola/openlinkhub:latest";
-  #    autoStart = true;
-
-  #    extraOptions = [
-  #      "--network=host"
-  #      "--privileged"
-  #    ];
-
-  #    volumes = [
-  #      "/var/lib/openlinkhub-docker:/opt/OpenLinkHub/database"
-  #      "/dev:/dev"
-  #      "/run/udev:/run/udev:ro"
-  #    ];
-  #  };
-  #};
 
   fonts.packages = with pkgs.nerd-fonts; [
     fira-code
@@ -121,8 +104,6 @@
   };
 
   catppuccin.enable = true;
-
-  services.udev.packages = [ pkgs.openlinkhub ];
 
   # Writes current system packages to /etc/current-system-packages
   environment.etc."current-system-packages".text =
