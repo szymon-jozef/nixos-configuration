@@ -43,7 +43,7 @@
 
       # System stuff
       waypaper
-      swww
+      awww
       kdePackages.kwallet
       kdePackages.kwallet-pam
       kdePackages.kwalletmanager
