@@ -90,6 +90,7 @@
     };
 
     gnupg.agent.enable = true;
+    obs-studio.enable = true;
 
     direnv.enable = true;
 
