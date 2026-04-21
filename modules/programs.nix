@@ -9,25 +9,6 @@
 
 {
   nixpkgs.config.permittedInsecurePackages = [ "electron-38.8.4" ];
-  nixpkgs.overlays = [
-    (final: prev: {
-      rstudio = prev.rstudio.overrideAttrs (old: {
-        nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.nodejs ];
-
-        preConfigure = (old.preConfigure or "") + ''
-          NODE_DIR="dependencies/common/node/22.13.1"
-
-          if [ -L "$NODE_DIR" ] || [ -d "$NODE_DIR" ]; then
-            rm -rf "$NODE_DIR" || true
-          fi
-
-          mkdir -p "$NODE_DIR/bin"
-
-          ln -sf ${prev.nodejs}/bin/* "$NODE_DIR/bin/"
-        '';
-      });
-    })
-  ];
 
   environment.systemPackages =
     with pkgs;
@@ -59,7 +40,6 @@
       homebank
       openrgb
       gimp
-      rstudio
 
       # System stuff
       waypaper
