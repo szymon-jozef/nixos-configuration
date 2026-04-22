@@ -84,7 +84,6 @@
       lutris
       rpcs3
       pcsx2
-      alvr
     ];
 
   virtualisation.docker.enable = true;
@@ -101,6 +100,11 @@
   programs = {
     fish.enable = true;
     chromium.enable = true;
+
+    alvr = lib.mkIf hostConfig.gaming {
+      enable = true;
+      openFirewall = true;
+    };
 
     java.enable = true;
     gamemode.enable = lib.mkIf hostConfig.gaming true;
