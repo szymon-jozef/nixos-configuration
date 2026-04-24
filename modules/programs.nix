@@ -110,6 +110,7 @@
 
   catppuccin = {
     enable = true;
+    accent = "sapphire";
   };
 
   # Writes current system packages to /etc/current-system-packages
