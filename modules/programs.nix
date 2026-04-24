@@ -108,7 +108,9 @@
     };
   };
 
-  catppuccin.enable = true;
+  catppuccin = {
+    enable = true;
+  };
 
   # Writes current system packages to /etc/current-system-packages
   environment.etc."current-system-packages".text =
