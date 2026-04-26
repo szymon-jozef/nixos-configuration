@@ -13,7 +13,7 @@
       # Browsers
       brave
       tutanota-desktop
-      inputs.zen-browser.packages."${pkgs.system}".default
+      inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
 
       # Texting
       vesktop
