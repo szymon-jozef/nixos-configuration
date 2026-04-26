@@ -29,8 +29,10 @@
       "nix-command"
       "flakes"
     ];
-    max-jobs = if hostConfig.name == "pitagoras" then 1 else "auto";
-    cores = if hostConfig.name == "pitagoras" then 1 else 0;
+    max-jobs = hostConfig.maxJobs;
+    cores = hostConfig.cores;
+
+    auto-optimise-store = true;
 
   };
   nixpkgs.config.allowUnfree = true;

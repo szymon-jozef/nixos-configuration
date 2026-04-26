@@ -8,63 +8,12 @@
 }:
 
 {
-  nixpkgs.config.permittedInsecurePackages = [ "electron-38.8.4" ];
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      # Browsers
-      brave
-      tutanota-desktop
-      inputs.zen-browser.packages."${pkgs.system}".default
+  imports = [
+    ./programs/packages.nix
 
-      # Texting
-      vesktop
-      signal-desktop
-
-      # Music
-      spotify
-
-      # Cli
-      kitty
-      neovim
-      wget
-      git
-      ripgrep
-      killall
-      unzip
-      wl-clipboard
-      ffmpeg
-
-      # Gui stuff
-      homebank
-      openrgb
-      gimp
-
-      # System stuff
-      waypaper
-      awww
-      kdePackages.kwallet
-      kdePackages.kwallet-pam
-      kdePackages.kwalletmanager
-      hyprpolkitagent
-      modprobed-db
-
-      # virtualisation
-      distrobox
-      quickemu
-    ]
-    ++ lib.optionals hostConfig.winboat [
-      # winboat
-    ]
-    ++ lib.optionals hostConfig.gaming [
-      mangohud
-      prismlauncher
-      heroic
-      # lutris
-      rpcs3
-      pcsx2
-    ];
+  ]
+  ++ lib.optional hostConfig.gaming ./programs/gaming.nix;
 
   virtualisation.docker.enable = true;
   virtualisation.oci-containers.backend = "docker";
@@ -80,18 +29,7 @@
   programs = {
     fish.enable = true;
     chromium.enable = true;
-
-    # alvr = lib.mkIf hostConfig.gaming {
-    #   enable = true;
-    #   openFirewall = true;
-    # };
-
     java.enable = true;
-    gamemode.enable = lib.mkIf hostConfig.gaming true;
-    steam = lib.mkIf hostConfig.gaming {
-      enable = true;
-      gamescopeSession.enable = true;
-    };
 
     gnupg.agent.enable = true;
     obs-studio.enable = true;

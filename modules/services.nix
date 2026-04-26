@@ -7,9 +7,15 @@
 
 {
   services = {
-    upower.enable = true;
+    # === printing ===
     printing.enable = true;
-    tailscale.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    # === syncthing ===
     syncthing = {
       enable = true;
       openDefaultPorts = true;
@@ -17,9 +23,11 @@
       user = hostConfig.username;
     };
 
+    # === keyring and stuff ===
     gnome.gnome-keyring.enable = false;
     dbus.packages = [ pkgs.kdePackages.kwallet ];
 
+    # === backup ===
     snapper = lib.mkIf hostConfig.snapperHome {
       configs = {
         home = {
@@ -31,6 +39,7 @@
       };
     };
 
+    # === display manager ===
     displayManager = {
       sddm = {
         enable = true;
@@ -45,23 +54,13 @@
       };
     };
 
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
-
-    flatpak.enable = true;
-
+    # === hardware stuff ===
     hardware.openrgb.enable = true;
     lact = hostConfig.overclock;
-
     xserver.videoDrivers = if hostConfig.isNvidia then [ "nvidia" ] else [ ];
-
     xserver.enable = false;
 
-    # Audio
-
+    # === audio ===
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
@@ -69,5 +68,10 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    # === other stuff ===
+    upower.enable = true;
+    tailscale.enable = true;
+    flatpak.enable = true;
   };
 }
