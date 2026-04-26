@@ -2,11 +2,11 @@
   pkgs,
   hostConfig,
   inputs,
+  pkgs-stable,
   ...
 }:
 
 {
-
   environment.systemPackages =
     with pkgs;
     [
@@ -37,6 +37,7 @@
       homebank
       openrgb
       gimp
+      pkgs-stable.rstudio # we use stable, because unstable is broken rn
 
       # System stuff
       waypaper

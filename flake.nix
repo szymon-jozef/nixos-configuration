@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     #hyprland.url = "github:hyprwm/Hyprland";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
@@ -18,10 +19,23 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-stable,
       catppuccin,
       ...
     }@inputs:
     let
+      system = "x86_64-linux";
+      pkgs-stable = import nixpkgs-stable {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "electron-38.8.4"
+          ];
+        };
+
+      };
+
       defaultHostConfig = {
         username = "szymon";
         isNvidia = false;
@@ -45,7 +59,7 @@
         in
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs hostConfig;
+            inherit inputs hostConfig pkgs-stable;
           };
           modules = [
             hostConfig.hardware
