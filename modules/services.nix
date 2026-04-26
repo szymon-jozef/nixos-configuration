@@ -59,6 +59,11 @@
     lact = hostConfig.overclock;
     xserver.videoDrivers = if hostConfig.isNvidia then [ "nvidia" ] else [ ];
     xserver.enable = false;
+    fstrim = {
+      enable = true;
+      interval = "weekly";
+    };
+    fwupd.enable = true;
 
     # === audio ===
     pulseaudio.enable = false;

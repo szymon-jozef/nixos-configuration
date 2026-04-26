@@ -11,7 +11,6 @@
 
   imports = [
     ./programs/packages.nix
-
   ]
   ++ lib.optional hostConfig.gaming ./programs/gaming.nix;
 

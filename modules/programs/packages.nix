@@ -1,4 +1,9 @@
-{ pkgs, hostConfig, ... }:
+{
+  pkgs,
+  hostConfig,
+  inputs,
+  ...
+}:
 
 {
 

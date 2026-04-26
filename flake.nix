@@ -34,7 +34,7 @@
         overclock = {
           enable = false;
         };
-        maxJobs = 0;
+        maxJobs = "auto";
         cores = 0;
       };
 
