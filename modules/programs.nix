@@ -61,7 +61,7 @@
       mangohud
       prismlauncher
       heroic
-      lutris
+      # lutris
       rpcs3
       pcsx2
     ];
@@ -81,10 +81,10 @@
     fish.enable = true;
     chromium.enable = true;
 
-    alvr = lib.mkIf hostConfig.gaming {
-      enable = true;
-      openFirewall = true;
-    };
+    # alvr = lib.mkIf hostConfig.gaming {
+    #   enable = true;
+    #   openFirewall = true;
+    # };
 
     java.enable = true;
     gamemode.enable = lib.mkIf hostConfig.gaming true;
