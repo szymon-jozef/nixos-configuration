@@ -1,4 +1,9 @@
-{ pkgs, hostConfig, ... }:
+{
+  pkgs,
+  hostConfig,
+  lib,
+  ...
+}:
 
 {
   boot = {
@@ -19,23 +24,15 @@
 
       efi.canTouchEfiVariables = hostConfig.bootType == "gpt";
 
-      limine =
-        if hostConfig.bootType == "mbr" then
-          {
-            enable = true;
-            efiSupport = false;
-            biosSupport = true;
-            biosDevice = "/dev/sda";
-          }
-        else
-          {
-            enable = false;
-          };
+      limine = {
+        enable = true;
 
-      systemd-boot = {
-        enable = hostConfig.bootType == "gpt";
+        efiSupport = hostConfig.bootType == "gpt";
+        biosSupport = hostConfig.bootType == "mbr";
 
-        configurationLimit = 10;
+      }
+      // lib.optionalAttrs (hostConfig.bootType == "mbr") {
+        biosDevice = "/dev/sda";
       };
     };
 
