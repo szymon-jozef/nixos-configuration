@@ -3,9 +3,19 @@
   hostConfig,
   inputs,
   pkgs-stable,
+  lib,
   ...
 }:
 
+let
+  rstudio-with-packages = pkgs-stable.rstudioWrapper.override {
+    # we use stable, because unstable is broken rn
+    packages = with pkgs-stable.rPackages; [
+      # additional packages for rstudio here
+      ggplot2
+    ];
+  };
+in
 {
   environment.systemPackages =
     with pkgs;
@@ -37,7 +47,7 @@
       homebank
       openrgb
       gimp
-      pkgs-stable.rstudio # we use stable, because unstable is broken rn
+      rstudio-with-packages
 
       # System stuff
       waypaper
