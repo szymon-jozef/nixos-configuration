@@ -1,30 +1,14 @@
 {
   pkgs,
   hostConfig,
-  inputs,
-  pkgs-stable,
   lib,
   ...
 }:
 
-let
-  rstudio-with-packages = pkgs-stable.rstudioWrapper.override {
-    # we use stable, because unstable is broken rn
-    packages = with pkgs-stable.rPackages; [
-      # additional packages for rstudio here
-      ggplot2
-    ];
-  };
-in
 {
   environment.systemPackages =
     with pkgs;
     [
-      # Browsers
-      brave
-      tutanota-desktop
-      inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
-
       # Texting
       vesktop
       signal-desktop
@@ -43,12 +27,6 @@ in
       wl-clipboard
       ffmpeg
 
-      # Gui stuff
-      homebank
-      openrgb
-      gimp
-      rstudio-with-packages
-
       # System stuff
       waypaper
       awww
@@ -64,13 +42,5 @@ in
     ]
     ++ lib.optionals hostConfig.winboat [
       winboat
-    ]
-    ++ lib.optionals hostConfig.gaming [
-      mangohud
-      prismlauncher
-      heroic
-      # lutris
-      rpcs3
-      pcsx2
     ];
 }
