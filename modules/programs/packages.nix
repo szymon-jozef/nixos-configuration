@@ -63,7 +63,7 @@ in
       quickemu
     ]
     ++ lib.optionals hostConfig.winboat [
-      # winboat
+      winboat
     ]
     ++ lib.optionals hostConfig.gaming [
       mangohud
