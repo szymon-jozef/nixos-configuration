@@ -97,8 +97,8 @@
           hardware = ./hardware/pitagoras.nix;
           isNvidia = true;
           snapperHome = false;
-          maxJobs = 1;
-          cores = 1;
+          maxJobs = 4;
+          cores = 4;
         };
 
         paderewski = mkHost {
