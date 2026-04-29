@@ -2,6 +2,7 @@
   pkgs,
   hostConfig,
   lib,
+  inputs,
   ...
 }:
 
@@ -26,6 +27,7 @@
       unzip
       wl-clipboard
       ffmpeg
+      inputs.agenix.packages."${system}".default
 
       # System stuff
       waypaper

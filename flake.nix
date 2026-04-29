@@ -14,6 +14,11 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -21,6 +26,7 @@
       nixpkgs,
       nixpkgs-stable,
       catppuccin,
+      agenix,
       ...
     }@inputs:
     let
@@ -65,6 +71,7 @@
             hostConfig.hardware
             ./configuration.nix
             catppuccin.nixosModules.catppuccin
+            agenix.nixosModules.default
             (
               { ... }:
               {
