@@ -64,7 +64,7 @@ in
               key-mgmt = "wpa-eap";
             };
             "802-1x" = {
-              eap = "peap;";
+              eap = "peap";
               phase2-auth = "mschapv2";
 
               identity = "$WIFI_UNI_LOGIN";
