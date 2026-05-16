@@ -19,6 +19,9 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -27,6 +30,7 @@
       nixpkgs-stable,
       catppuccin,
       agenix,
+      nix-index-database,
       ...
     }@inputs:
     let
@@ -71,6 +75,8 @@
             hostConfig.hardware
             ./configuration.nix
             catppuccin.nixosModules.catppuccin
+            nix-index-database.nixosModules.default
+            { programs.nix-index-database.comma.enable = true; }
             agenix.nixosModules.default
             (
               { ... }:
