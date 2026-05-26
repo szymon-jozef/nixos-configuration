@@ -28,6 +28,7 @@
     fish.enable = true;
     chromium.enable = true;
     java.enable = true;
+    kdeconnect.enable = true;
 
     gnupg.agent.enable = true;
     obs-studio.enable = true;

@@ -16,6 +16,14 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   zramSwap.enable = true;
+  security.pam.loginLimits = [
+    {
+      domain = "@users";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
+  ];
 
   system.stateVersion = "25.11"; # Don't you fecking change me!!!
 
