@@ -54,25 +54,6 @@ in
               psk = "$WIFI_HOME_PASSWORD";
             };
           };
-          "uni-nix" = {
-            connection = {
-              id = "uni-nix";
-              type = "wifi";
-            };
-            wifi.ssid = "$WIFI_UNI_SSID";
-            wifi-security = {
-              key-mgmt = "wpa-eap";
-            };
-            "802-1x" = {
-              eap = "peap";
-              phase2-auth = "mschapv2";
-
-              identity = "$WIFI_UNI_LOGIN";
-              password = "$WIFI_UNI_PASSWORD";
-
-              ca-cert = "${uniCert}";
-            };
-          };
         };
       };
     };
